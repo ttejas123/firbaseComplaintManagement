@@ -1,11 +1,14 @@
 import { auth } from './firebase';
 import './App.css';
 import Constact from "./component/Contacts.js";
+import AllComplaint from "./component/AllComplaint.js";
 import React, { useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import "./App.css";
+import { NavLink } from 'react-router-dom';
 import { Button, Input } from '@material-ui/core';
+import { Route, Switch, Redirect } from "react-router-dom";
 
 const getModelStyle = ()=>{
   const top = 50;
@@ -38,6 +41,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
+  const [ContactPage, setContactPage] = useState(true);
   let count = 0;
   useEffect(() =>{
     const unsubscribe = auth.onAuthStateChanged((authUser) =>{
@@ -148,7 +152,15 @@ function App() {
 
       	<div className="app__header">    
             {user ? (
-              <Button onClick={()=> auth.signOut()}>LOGOUT</Button>
+              <div className="twoButtonSet">
+                <div className="LogoutButton">
+                  <Button onClick={()=> auth.signOut()}>LOGOUT</Button>
+                </div>
+                <div className="ComplaintsButton">
+                  <Button onClick={()=> setContactPage(true)}>Complaint Form</Button>
+                  <Button onClick={()=> setContactPage(false)}>Complaints</Button>
+                </div>
+              </div>
             ):(
               <div className = "app__loginContainer">
                 <Button onClick={()=> setOpenSignIn(true)}> Sign In</Button>
@@ -160,7 +172,13 @@ function App() {
       	</div>
 
       	{user?.displayName ? (
-	        <Constact />
+          <div>
+	           {ContactPage?(
+                <Constact />
+              ):(
+                <AllComplaint />
+              )}
+          </div>
 	      ):(
 	      	<>
 	        <h3>You need to signUp first and refresh again</h3>

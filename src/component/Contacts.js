@@ -1,6 +1,8 @@
 import ContactForm from "./ContactForm.js";
 import React, {useState, useEffect} from "react";
 import firebase from "../firebase";
+import { NavLink } from 'react-router-dom';
+import AllComplaint from './AllComplaint';
 
 const Contact=()=>{
 	const [contactObject, setContactObject] = useState({});
@@ -99,7 +101,9 @@ const Contact=()=>{
 							<th>full Name</th>
 							<th>Class</th>
 							<th>Email</th>
+                            <th>Status</th>
                             <th>Action</th>
+                            
 						</thead>
 						<tbody>
 							{
@@ -108,6 +112,7 @@ const Contact=()=>{
 										<td>{contactObject[id].fullName}</td>
 										<td>{contactObject[id].class}</td>
 										<td>{contactObject[id].email}</td>
+										<td>{contactObject[id].status}</td>
 										<td> 
 											<a className="btn text-primary" onClick={()=>{setCurrentId(id)}}>
 												<i className="fas fa-pencil-alt"/>

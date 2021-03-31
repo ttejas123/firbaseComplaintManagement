@@ -7,6 +7,7 @@ const ContactForm=(props)=>{
 		class:"",
 		email:"",
 		complaint:"",
+		status:"pending"
 	}
 	const [values, setValues] = useState(initialValues);
 	//for set value to passing to contact.js
