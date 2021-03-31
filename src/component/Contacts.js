@@ -17,6 +17,7 @@ const Contact=()=>{
 			}
 		})
 	},[])
+	
 	//Store data into firebase, or update data into database
 	const addOrEdit = (obj) =>{
 		if(currentId==""){

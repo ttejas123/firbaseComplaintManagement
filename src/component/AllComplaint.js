@@ -13,6 +13,7 @@ const AllComplaint = ()=>{
 			}
 		})
 	},[])
+	
 	return (
 		<>
 			<div className="jumbotron jumbotron-fluid">

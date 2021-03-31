@@ -13,6 +13,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 const getModelStyle = ()=>{
   const top = 50;
   const left = 50;
+  
 
   return {
     top: `${top}%`,
